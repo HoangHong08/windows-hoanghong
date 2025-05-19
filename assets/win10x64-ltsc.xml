@@ -16,19 +16,16 @@
           <DiskID>0</DiskID>
           <WillWipeDisk>true</WillWipeDisk>
           <CreatePartitions>
-            <!-- System partition (ESP) -->
             <CreatePartition wcm:action="add">
               <Order>1</Order>
               <Type>EFI</Type>
               <Size>128</Size>
             </CreatePartition>
-            <!-- Microsoft reserved partition (MSR) -->
             <CreatePartition wcm:action="add">
               <Order>2</Order>
               <Type>MSR</Type>
               <Size>128</Size>
             </CreatePartition>
-            <!-- Windows partition -->
             <CreatePartition wcm:action="add">
               <Order>3</Order>
               <Type>Primary</Type>
@@ -36,19 +33,16 @@
             </CreatePartition>
           </CreatePartitions>
           <ModifyPartitions>
-            <!-- System partition (ESP) -->
             <ModifyPartition wcm:action="add">
               <Order>1</Order>
               <PartitionID>1</PartitionID>
               <Label>System</Label>
               <Format>FAT32</Format>
             </ModifyPartition>
-            <!-- MSR partition does not need to be modified -->
             <ModifyPartition wcm:action="add">
               <Order>2</Order>
               <PartitionID>2</PartitionID>
             </ModifyPartition>
-            <!-- Windows partition -->
             <ModifyPartition wcm:action="add">
               <Order>3</Order>
               <PartitionID>3</PartitionID>
@@ -61,12 +55,6 @@
       </DiskConfiguration>
       <ImageInstall>
         <OSImage>
-          <InstallFrom>
-           <MetaData wcm:action="add">
-              <Key>/image/index</Key>
-              <Value>1</Value>
-            </MetaData>
-          </InstallFrom>
           <InstallTo>
             <DiskID>0</DiskID>
             <PartitionID>3</PartitionID>
@@ -86,6 +74,9 @@
         <AcceptEula>true</AcceptEula>
         <FullName>Docker</FullName>
         <Organization>Windows for Docker</Organization>
+        <ProductKey>
+          <Key>VK7JG-NPHTM-C97JM-9MPGT-3V66T</Key>
+        </ProductKey>
       </UserData>
       <EnableFirewall>false</EnableFirewall>
       <Diagnostics>
@@ -121,7 +112,7 @@
         <SupportURL>https://github.com/dockur/windows/issues</SupportURL>
       </OEMInformation>
       <OEMName>Windows for Docker</OEMName>
-    </component>
+      </component>
     <component name="Microsoft-Windows-ErrorReportingCore" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
       <DisableWER>1</DisableWER>
     </component>
@@ -283,28 +274,25 @@
       <UserAccounts>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
-            <Name>Docker</Name>
-            <Group>Administrators</Group>
+            <Name>HoangHong08</Name>
             <Password>
-              <Value />
+              <Value>0range_Cat</Value>
               <PlainText>true</PlainText>
             </Password>
+            <Group>Administrators</Group>
+            <DisplayName>HoangHong08</DisplayName>
+            <Description>User for Wwise</Description>
           </LocalAccount>
         </LocalAccounts>
-        <AdministratorPassword>
-          <Value>password</Value>
-          <PlainText>true</PlainText>
-        </AdministratorPassword>
-      </UserAccounts>
+        </UserAccounts>
       <AutoLogon>
-        <Username>Docker</Username>
-        <Enabled>true</Enabled>
-        <LogonCount>65432</LogonCount>
         <Password>
-          <Value />
+          <Value>0range_Cat</Value>
           <PlainText>true</PlainText>
         </Password>
-      </AutoLogon>
+        <Enabled>true</Enabled>
+        <Username>HoangHong08</Username>
+        </AutoLogon>
       <Display>
         <ColorDepth>32</ColorDepth>
         <HorizontalResolution>1920</HorizontalResolution>
@@ -317,27 +305,22 @@
         <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
         <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
         <NetworkLocation>Home</NetworkLocation>
-        <ProtectYourPC>3</ProtectYourPC>
-        <SkipUserOOBE>true</SkipUserOOBE>
+        <ProtectYourPC>3</ProtectYourPC> <SkipUserOOBE>true</SkipUserOOBE>
         <SkipMachineOOBE>true</SkipMachineOOBE>
       </OOBE>
-      <RegisteredOrganization>Dockur</RegisteredOrganization>
-      <RegisteredOwner>Windows for Docker</RegisteredOwner>
-      <FirstLogonCommands>
+      <RegisteredOrganization>Dockur</RegisteredOrganization> <RegisteredOwner>Windows for Docker</RegisteredOwner> <FirstLogonCommands>
         <SynchronousCommand wcm:action="add">
           <Order>1</Order>
           <CommandLine>reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "AllowInsecureGuestAuth" /t REG_DWORD /d 1 /f</CommandLine>
           <Description>Allow guest access to network shares</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <Order>3</Order>
-          <CommandLine>reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device" /v "DevicePasswordLessBuildVersion" /t REG_DWORD /d 0 /f</CommandLine>
+          <Order>3</Order> <CommandLine>reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device" /v "DevicePasswordLessBuildVersion" /t REG_DWORD /d 0 /f</CommandLine>
           <Description>Enable option for passwordless sign-in</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <Order>4</Order>
-          <CommandLine>cmd /C wmic useraccount where name="Docker" set PasswordExpires=false</CommandLine>
-          <Description>Password Never Expires</Description>
+          <CommandLine>cmd /C wmic useraccount where name="HoangHong08" set PasswordExpires=false</CommandLine> <Description>Password Never Expires</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <Order>5</Order>
@@ -428,3 +411,4 @@
     </component>
   </settings>
 </unattend>
+
